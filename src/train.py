@@ -1,4 +1,4 @@
-from torch_geometric.datasets import Planetoid
+from torch_geometric.datasets import Planetoid, AmazonProducts, PPI
 import lightning.pytorch as L
 import torch.nn as nn
 import torch
@@ -10,7 +10,12 @@ LR = 1e-3
 WD = 1e-4
 
 if __name__ == "__main__":
-    dataset = Planetoid(root='data/', name='PubMed')
+    # dataset = Planetoid(root='data/', name='PubMed')
+    # dataset = AmazonProducts(root = 'data/AmazonProducts')
+    dataset = PPI(root = 'data/PPI', split = 'val')
+    print(len(dataset))
+    exit()
+
     data = dataset[0]
     model = GNN(
         dataset.num_features,
